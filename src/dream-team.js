@@ -2,19 +2,14 @@ const CustomError = require("../extensions/custom-error");
 
 module.exports = function createDreamTeam(members) {
   if (!Array.isArray(members)) {
-    return false
+    return false;
   }
-
   let result = [];
-  for (let i = 0; i < members.length; i++) {
-    if (typeof members[i] === 'string' && members[i][0] !== ' ') {
-      result.push(members[i][0]);
+  for (let member of members) {
+    if (typeof member === 'string') {
+      const membersItem = member.trim().toUpperCase();
+      result.push(membersItem[0]);
     }
-  };
-  if (result === []) {
-    return false
-  };
-  result = result.sort().join('');
-
-  return result.toUpperCase();
+  }
+  return result.sort().join('');
 };
